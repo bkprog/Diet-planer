@@ -11,23 +11,30 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/recipe")
 public class RecipeController {
 
     private final RecipeRepository recipeRepository;
     private final RecipeService recipeService;
 
-    @PostMapping("recipe/add")
+    @PostMapping("/add")
     public void addRecipe(@RequestBody RecipeDTO recipeDTO){
         recipeService.addRecipe(recipeDTO);
     }
 
-    @DeleteMapping("recipe/deleteAll")
+    @DeleteMapping("/deleteAll")
     public void deleteRecipe(){
         recipeRepository.deleteAll();
     }
 
-    @GetMapping("recipe/getall")
+    @GetMapping("/getall")
     public List<Recipe> getAllRecipes(){
        return recipeRepository.findAll();
     }
+
+    @DeleteMapping("/deleteById")
+    public void deleteById(@RequestBody Long recipeId){
+        recipeService.deleteRecipe(recipeId);
+    }
+
 }

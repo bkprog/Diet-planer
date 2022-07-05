@@ -11,22 +11,28 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/product")
 public class ProductController {
 
     private final ProductService productService;
     private final ProductRepository productRepository;
 
-    @PostMapping("/product/add")
+    @PostMapping("/add")
     public Product addProduct(@RequestBody ProductDTO productDTO){
         return productService.addProduct(productDTO);
     }
 
-    @DeleteMapping("/product/deleteall")
+    @DeleteMapping("/deleteall")
     public void deleteAllProducts(){
         productRepository.deleteAll();
     }
 
-    @GetMapping("/product/getall")
+    @DeleteMapping("/deleteById")
+    public void deleteById(@RequestBody Long productId){
+        productService.deleteProduct(productId);
+    }
+
+    @GetMapping("/getall")
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }

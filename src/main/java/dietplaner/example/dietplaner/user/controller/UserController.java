@@ -14,26 +14,27 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/auth")
 public class UserController {
 
     private final UserRepository userRepository;
     private final AuthService authService;
 
-    @PostMapping("auth/register")
+    @PostMapping("/register")
     public void register(@RequestBody UserRegisterDTO userRegisterDTO){
         authService.register(userRegisterDTO);
     }
 
-    @PostMapping("auth/login")
+    @PostMapping("/login")
     public UserResponseDTO login(@RequestBody UserLoginDTO userLoginDTO){
         return authService.login(userLoginDTO);
     }
 
-    @DeleteMapping("auth/deleteall")
+    @DeleteMapping("/deleteall")
     public void delete(){
         userRepository.deleteAll();
     }
-    @GetMapping("auth/getall")
+    @GetMapping("/getall")
     public List<DefaultUser> getall(){
         return userRepository.findAll();
     }

@@ -1,7 +1,7 @@
 package dietplaner.example.dietplaner.recipe.exceptions.Advice;
 
-import dietplaner.example.dietplaner.product.exceptions.ProductAlreadyExistException;
 import dietplaner.example.dietplaner.recipe.exceptions.RecipeAlreadyExistException;
+import dietplaner.example.dietplaner.recipe.exceptions.RecipeNotExistException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,16 @@ public class RecipeAdviceController {
     })
     @ResponseStatus(HttpStatus.CONFLICT)
     public String conflictAdvice(RuntimeException ex) {
+        log.warn(String.format("Error:'%s'", ex.getMessage()));
+        return ex.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = {
+            RecipeNotExistException.class
+    })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String notFoundAdvice(RuntimeException ex){
         log.warn(String.format("Error:'%s'", ex.getMessage()));
         return ex.getMessage();
     }

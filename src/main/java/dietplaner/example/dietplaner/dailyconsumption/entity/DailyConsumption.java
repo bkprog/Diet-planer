@@ -35,7 +35,7 @@ public class DailyConsumption {
     )
     private List<Recipe> recipes;
 
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     DefaultUser defaultUser;

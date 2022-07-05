@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/dailyConsumption")
+@RequestMapping("api/dailyConsumption")
 public class DailyConsumptionController {
 
     private final DailyConsumptionService dailyConsumptionService;
