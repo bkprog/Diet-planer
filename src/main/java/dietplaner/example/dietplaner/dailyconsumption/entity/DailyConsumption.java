@@ -51,3 +51,5 @@ public class DailyConsumption {
     }
 
 }
+/*
+https://careydevelopment.us/blog/spring-boot-and-jackson-how-to-get-around-that-infinite-recursion-or-stackoverflow-problem*/

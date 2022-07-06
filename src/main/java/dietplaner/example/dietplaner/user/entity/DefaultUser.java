@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
 import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
 import lombok.*;
@@ -33,6 +34,7 @@ public class DefaultUser {
 
     @Column
     private String password;
+
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "defaultUser")
     List<DailyConsumption> dailyConsumptions;
