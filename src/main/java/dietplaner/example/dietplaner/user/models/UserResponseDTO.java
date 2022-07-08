@@ -19,7 +19,7 @@ public class UserResponseDTO {
     public static UserResponseDTO of(DefaultUser defaultUser){
 
         return UserResponseDTO.builder()
-                .user_id(defaultUser.getUser_id())
+                .user_id(defaultUser.getUserId())
                 .name(defaultUser.getName())
                 .surname(defaultUser.getSurname())
                 .login(defaultUser.getLogin())

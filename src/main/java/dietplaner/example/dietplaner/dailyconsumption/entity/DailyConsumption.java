@@ -1,11 +1,13 @@
 package dietplaner.example.dietplaner.dailyconsumption.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+
 public class DailyConsumption {
 
 
@@ -25,6 +28,7 @@ public class DailyConsumption {
     private Long dailyConsumptionId;
 
     @Column
+    @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date date;
 
     @ManyToMany
@@ -35,7 +39,7 @@ public class DailyConsumption {
     )
     private List<Recipe> recipes;
 
-
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     DefaultUser defaultUser;
@@ -51,5 +55,4 @@ public class DailyConsumption {
     }
 
 }
-/*
-https://careydevelopment.us/blog/spring-boot-and-jackson-how-to-get-around-that-infinite-recursion-or-stackoverflow-problem*/
+

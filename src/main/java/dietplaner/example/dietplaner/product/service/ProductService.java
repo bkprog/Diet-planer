@@ -24,6 +24,7 @@ public class ProductService {
     }
 
     public Product addProduct(ProductDTO productDTO){
+        System.out.println("break");
         validateWithProductName(productDTO.getProductName());
 
         return productRepository.save(Product.of(productDTO));

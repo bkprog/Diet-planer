@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dietplaner.example.dietplaner.product.models.ProductDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import lombok.*;
