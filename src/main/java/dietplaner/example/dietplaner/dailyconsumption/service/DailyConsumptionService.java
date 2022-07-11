@@ -23,8 +23,6 @@ public class DailyConsumptionService {
 
     private final DailyConsumptionRepository dailyConsumptionRepository;
 
-    private final UserRepository userRepository;
-
     private final UserService userService;
 
 

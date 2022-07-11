@@ -19,6 +19,8 @@ public interface DailyConsumptionRepository extends JpaRepository<DailyConsumpti
 
     Optional<List<DailyConsumption>>findAllByDefaultUserUserId(Long id);
 
+    List<DailyConsumption> findDailyConsumptionsByDateBetweenAndDefaultUser(Date startDate, Date endDate,DefaultUser defaultUser);
+
 
 
 
