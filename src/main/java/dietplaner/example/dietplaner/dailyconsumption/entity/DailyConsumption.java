@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.*;
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
+import dietplaner.example.dietplaner.user.service.UserService;
 import lombok.*;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,8 +22,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-
 public class DailyConsumption {
+
+
 
 
     @Id
@@ -44,11 +48,14 @@ public class DailyConsumption {
     @JoinColumn(name = "user_id")
     DefaultUser defaultUser;
 
+
+
+
     public static DailyConsumption of(DailyConsumptionDTO dailyConsumptionDTO){
+
         DailyConsumption daily =new DailyConsumption();
 
         daily.setDate(dailyConsumptionDTO.getDate());
-        daily.setDefaultUser(dailyConsumptionDTO.getDefaultUser());
         daily.setRecipes(dailyConsumptionDTO.getRecipeList());
 
         return daily;

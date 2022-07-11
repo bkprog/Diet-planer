@@ -22,6 +22,7 @@ public class AuthService {
         }
     }
 
+
     public void register(UserRegisterDTO userRegisterDTO){
 
         validateUserWithLogin(userRegisterDTO.getLogin());
