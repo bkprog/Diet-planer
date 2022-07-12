@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MonthlyConsumptionDTO {
+public class ListOfConsumptionDTO {
     private Date startDate;
     private Date endDate;
     private Long userId;

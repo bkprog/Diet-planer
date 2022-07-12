@@ -1,8 +1,8 @@
 package dietplaner.example.dietplaner.dailyconsumption.controller;
 
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
-import dietplaner.example.dietplaner.dailyconsumption.models.MonthlyConsumptionDTO;
-import dietplaner.example.dietplaner.dailyconsumption.service.MonthlyConsumptionService;
+import dietplaner.example.dietplaner.dailyconsumption.models.ListOfConsumptionDTO;
+import dietplaner.example.dietplaner.dailyconsumption.service.ListOfConsumptionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 public class MonthlyConsumptionController {
 
-    private final MonthlyConsumptionService monthlyConsumptionService;
+    private final ListOfConsumptionService listOfConsumptionService;
 
     @PostMapping("/api/MonthlyConsumption/findByDateAndUser")
-    public List<DailyConsumption> findByDateAndUser(@RequestBody MonthlyConsumptionDTO monthlyConsumptionDTO){
-        return monthlyConsumptionService.getMonthlyList(monthlyConsumptionDTO);
+    public List<DailyConsumption> findByDateAndUser(@RequestBody ListOfConsumptionDTO listOfConsumptionDTO){
+        return listOfConsumptionService.getListOfDailyConsumptionByAmountOfTimeAndUser(listOfConsumptionDTO);
     }
 }

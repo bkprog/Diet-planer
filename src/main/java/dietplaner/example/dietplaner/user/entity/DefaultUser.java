@@ -1,6 +1,7 @@
 package dietplaner.example.dietplaner.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dietplaner.example.dietplaner.comment.entity.Comment;
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
 import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
 import lombok.*;
@@ -39,6 +40,12 @@ public class DefaultUser {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "defaultUser")
     List<DailyConsumption> dailyConsumptions;
 
+
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "user"
+    )
+    private List<Comment> comments;
 
     public static DefaultUser of(UserRegisterDTO userRegisterDTO){
         DefaultUser user = new DefaultUser();

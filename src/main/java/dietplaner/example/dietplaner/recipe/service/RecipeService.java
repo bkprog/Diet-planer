@@ -24,6 +24,11 @@ public class RecipeService {
         recipeRepository.findRecipeByRecipeId(recipeId).stream().findFirst().orElseThrow(RecipeNotExistException::new);
     }
 
+    public Recipe getRecipeById(Long recipeId){
+        return recipeRepository.findRecipeByRecipeId(recipeId).stream().findFirst().orElseThrow(RecipeNotExistException::new);
+    }
+
+
     public void addRecipe(RecipeDTO recipeDTO){
         validateWithRecipeName(recipeDTO.getName());
         recipeRepository.save(Recipe.of(recipeDTO));

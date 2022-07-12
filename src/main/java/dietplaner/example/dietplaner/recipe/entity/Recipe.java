@@ -1,5 +1,7 @@
 package dietplaner.example.dietplaner.recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dietplaner.example.dietplaner.comment.entity.Comment;
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
 import dietplaner.example.dietplaner.product.entity.Product;
 import dietplaner.example.dietplaner.recipe.models.RecipeDTO;
@@ -31,6 +33,13 @@ public class Recipe {
 
     @ManyToMany
     private List<Product> products;
+
+
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "recipe"
+    )
+    private List<Comment> comments;
 
 
     public static Recipe of(RecipeDTO recipeDTO){
