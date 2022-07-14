@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 
 
 
+
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public DefaultUser findUserById(Long id){
-        return userRepository.findDefaultUserByUserId(id).stream().findFirst().orElseThrow(UserNotExistException::new);
+    public DefaultUser findUserById(Long userId){
+        return userRepository.findDefaultUserByUserId(userId).stream().findFirst().orElseThrow(UserNotExistException::new);
     }
+
+
 }

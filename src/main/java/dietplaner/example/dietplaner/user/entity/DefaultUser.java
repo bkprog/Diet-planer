@@ -1,6 +1,7 @@
 package dietplaner.example.dietplaner.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.comment.entity.Comment;
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
 import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
@@ -46,6 +47,15 @@ public class DefaultUser {
             mappedBy = "user"
     )
     private List<Comment> comments;
+
+    @JsonManagedReference
+    @ManyToMany
+    @JoinTable(
+            name="alergensToUser",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "alergenId")
+    )
+    private List<Alergen> alergens;
 
     public static DefaultUser of(UserRegisterDTO userRegisterDTO){
         DefaultUser user = new DefaultUser();

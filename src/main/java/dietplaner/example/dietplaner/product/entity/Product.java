@@ -1,6 +1,6 @@
 package dietplaner.example.dietplaner.product.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.product.models.ProductDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import lombok.*;
@@ -42,6 +42,14 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     private List<Recipe> recipes;
+
+    @ManyToMany
+    @JoinTable(
+            name="alergensToProduct",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "alergenId")
+    )
+    private List<Alergen> alergens;
 
 
     public static Product of(ProductDTO productDTO){
