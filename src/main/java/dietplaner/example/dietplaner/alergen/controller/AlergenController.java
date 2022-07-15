@@ -2,8 +2,10 @@ package dietplaner.example.dietplaner.alergen.controller;
 
 import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.alergen.models.AlergenDTO;
-import dietplaner.example.dietplaner.alergen.models.UpdateAlergenListDTO;
+import dietplaner.example.dietplaner.alergen.models.UpdateAlergenListForProductDTO;
+import dietplaner.example.dietplaner.alergen.models.UpdateAlergenListForUserDTO;
 import dietplaner.example.dietplaner.alergen.service.AlergenService;
+import dietplaner.example.dietplaner.product.entity.Product;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -33,15 +35,22 @@ public class AlergenController {
     }
 
     @PatchMapping("/setAlergenToUser")
-    public DefaultUser setAlergenToUser(@RequestBody UpdateAlergenListDTO updateAlergenListDTO){
-        return alergenService.setAlergenOfUser(updateAlergenListDTO);
+    public DefaultUser setAlergenToUser(@RequestBody UpdateAlergenListForUserDTO updateAlergenListForUserDTO){
+        return alergenService.setAlergenOfUser(updateAlergenListForUserDTO);
     }
 
     @PatchMapping("/removeAlergenFromUser")
-    public DefaultUser removeAlergenFromUser(@RequestBody UpdateAlergenListDTO updateAlergenListDTO){
-        return alergenService.removeAlergenFromUser(updateAlergenListDTO);
+    public DefaultUser removeAlergenFromUser(@RequestBody UpdateAlergenListForUserDTO updateAlergenListForUserDTO){
+        return alergenService.removeAlergenFromUser(updateAlergenListForUserDTO);
     }
 
+    @PatchMapping("/setAlergenToProduct")
+    public Product setAlergenToProduct(@RequestBody UpdateAlergenListForProductDTO updateAlergenListForProductDTO){
+        return alergenService.setAlergenToProduct(updateAlergenListForProductDTO);
+    }
 
-
+    @PatchMapping("/removeAlergenFromProduct")
+    public Product removeAlergenFromProduct(@RequestBody UpdateAlergenListForProductDTO updateAlergenListForProductDTO){
+        return alergenService.removeAlergenFromProduct(updateAlergenListForProductDTO);
+    }
 }

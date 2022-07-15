@@ -30,6 +30,7 @@ public class Alergen {
     @ManyToMany(mappedBy = "alergens")
     private List<DefaultUser> users;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "alergens")
     private List<Product> products;
 

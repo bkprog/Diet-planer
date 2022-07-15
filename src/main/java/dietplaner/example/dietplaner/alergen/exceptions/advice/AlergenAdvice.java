@@ -1,9 +1,6 @@
 package dietplaner.example.dietplaner.alergen.exceptions.advice;
 
-import dietplaner.example.dietplaner.alergen.exceptions.AlergenAlreadyExistException;
-import dietplaner.example.dietplaner.alergen.exceptions.AlergenNotExistException;
-import dietplaner.example.dietplaner.alergen.exceptions.UserAlreadyHaveThisAlergenSavedException;
-import dietplaner.example.dietplaner.alergen.exceptions.UserDoesntHaveThisAlergenSavedException;
+import dietplaner.example.dietplaner.alergen.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +15,8 @@ public class AlergenAdvice {
     @ResponseBody
     @ExceptionHandler(value = {
             UserAlreadyHaveThisAlergenSavedException.class,
-            AlergenAlreadyExistException.class
+            AlergenAlreadyExistException.class,
+            ProductAlreadyHaveThisAlergenSavedException.class
     })
     @ResponseStatus(HttpStatus.CONFLICT)
     public String conflictAdvice(RuntimeException ex) {

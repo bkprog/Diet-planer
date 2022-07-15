@@ -3,6 +3,7 @@ package dietplaner.example.dietplaner.user.service;
 import dietplaner.example.dietplaner.user.Exceptions.UserLoginAlreadyExistException;
 import dietplaner.example.dietplaner.user.Exceptions.UserWrongAuthorizationDataException;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
+import dietplaner.example.dietplaner.user.models.PasswordChangeDTO;
 import dietplaner.example.dietplaner.user.models.UserLoginDTO;
 import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
 import dietplaner.example.dietplaner.user.models.UserResponseDTO;
@@ -42,6 +43,14 @@ public class AuthService {
                 .stream().findFirst().orElseThrow(UserWrongAuthorizationDataException::new);
 
         return UserResponseDTO.of(defaultUser);
+
+    }
+    public void changePassword(PasswordChangeDTO passwordChangeDTO){
+        DefaultUser defaultUser= userRepository.findDefaultUserByLoginAndPassword(passwordChangeDTO.getLogin(),Passwordhash.passwordHash(passwordChangeDTO.getPassword()))
+                .stream().findFirst().orElseThrow(UserWrongAuthorizationDataException::new);
+        defaultUser.setPassword(Passwordhash.passwordHash(passwordChangeDTO.getNewPassword()));
+
+        userRepository.save(defaultUser);
 
     }
 }

@@ -1,6 +1,7 @@
 package dietplaner.example.dietplaner.user.controller;
 
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
+import dietplaner.example.dietplaner.user.models.PasswordChangeDTO;
 import dietplaner.example.dietplaner.user.models.UserLoginDTO;
 import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
 import dietplaner.example.dietplaner.user.models.UserResponseDTO;
@@ -39,6 +40,10 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @PatchMapping("/changePassword")
+    public void passwordChange(@RequestBody PasswordChangeDTO passwordChangeDTO){
+        authService.changePassword(passwordChangeDTO);
+    }
 
 
 }

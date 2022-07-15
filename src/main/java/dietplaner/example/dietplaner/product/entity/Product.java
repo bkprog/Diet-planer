@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.product.models.ProductDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
@@ -43,6 +44,7 @@ public class Product {
     )
     private List<Recipe> recipes;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name="alergensToProduct",

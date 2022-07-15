@@ -7,7 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UpdateAlergenListDTO {
+public class UpdateAlergenListForUserDTO {
 
     private Long userId;
     private Long alergenId;
