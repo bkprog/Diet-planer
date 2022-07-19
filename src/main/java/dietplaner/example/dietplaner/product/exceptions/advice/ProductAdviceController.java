@@ -30,8 +30,8 @@ public class ProductAdviceController {
             ProductNotExistException.class
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String notFoundAdvice(RuntimeException ex1) {
-        log.warn(String.format("Error:'%s'", ex1.getMessage()));
-        return ex1.getMessage();
+    public String notFoundAdvice(RuntimeException ex) {
+        log.warn(String.format("Error:'%s'", ex.getMessage()));
+        return ex.getMessage();
     }
 }

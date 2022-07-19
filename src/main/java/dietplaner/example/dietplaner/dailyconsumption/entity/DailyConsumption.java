@@ -1,18 +1,15 @@
 package dietplaner.example.dietplaner.dailyconsumption.entity;
 
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
-import dietplaner.example.dietplaner.user.service.UserService;
 import lombok.*;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -33,7 +30,7 @@ public class DailyConsumption {
 
     @Column
     @DateTimeFormat(pattern = "yyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
     @ManyToMany
     @JoinTable(

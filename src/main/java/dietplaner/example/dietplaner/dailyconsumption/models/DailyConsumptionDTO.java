@@ -3,7 +3,7 @@ package dietplaner.example.dietplaner.dailyconsumption.models;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class DailyConsumptionDTO {
 
-    private Date date;
+    private LocalDate date;
     private List<Recipe> recipeList;
     private Long userId;
 

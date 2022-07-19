@@ -7,15 +7,12 @@ import dietplaner.example.dietplaner.dailyconsumption.exceptions.UserDoesNotHave
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.dailyconsumption.repository.DailyConsumptionRepository;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
-import dietplaner.example.dietplaner.user.repository.UserRepository;
 import dietplaner.example.dietplaner.user.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +24,7 @@ public class DailyConsumptionService {
 
 
 
-        private void validateWithUserAndDate(DefaultUser defaultUser, Date date) {
+        private void validateWithUserAndDate(DefaultUser defaultUser, LocalDate date) {
             if (dailyConsumptionRepository.findDailyConsumptionByDefaultUserAndDate(defaultUser, date).isPresent()) {
                 throw new DailyConsumptionAlreadyExistException();
             }
@@ -49,7 +46,7 @@ public class DailyConsumptionService {
             return dailyConsumptionRepository.save(DailyConsumption.of(dailyConsumptionDTO));
         }
 
-        public DailyConsumption findDailyConsumptionByUserAndDate(Long id, Date date){
+        public DailyConsumption findDailyConsumptionByUserAndDate(Long id, LocalDate date){
 
             return dailyConsumptionRepository.findDailyConsumptionByDefaultUserUserIdAndDate(id,date).stream().findFirst()
                     .orElseThrow(DailyConsumptionNotExistException::new);
@@ -62,6 +59,8 @@ public class DailyConsumptionService {
             return dailyConsumptionRepository.findAllByDefaultUserUserId(id).stream().findFirst()
                     .orElseThrow(UserDoesNotHaveAnyDailyConsumptionsException::new);
         }
+
+
 
 
 

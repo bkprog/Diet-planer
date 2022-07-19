@@ -1,19 +1,16 @@
 package dietplaner.example.dietplaner.dailyconsumption.models;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ListOfConsumptionDTO {
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Long userId;
+public class YearlyConsumptionResponseDTO {
+    List<MonthlyConsumptionDTO> monthlyConsumptionDTOList;
 }
