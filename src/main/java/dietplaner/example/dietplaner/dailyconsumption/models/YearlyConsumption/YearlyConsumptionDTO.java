@@ -1,11 +1,12 @@
-package dietplaner.example.dietplaner.dailyconsumption.models;
+package dietplaner.example.dietplaner.dailyconsumption.models.YearlyConsumption;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.Year;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import java.util.Date;
 @Setter
 public class YearlyConsumptionDTO {
 
-    private Date startDate;
-    private Date endDate;
+    @JsonFormat(pattern = "yyyy")
+    private Year year;
     private Long userId;
 }
