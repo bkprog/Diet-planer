@@ -59,8 +59,6 @@ public class DailyConsumption {
         DailyConsumption daily =new DailyConsumption();
 
         daily.setDate(dailyConsumptionDTO.getDate());
-        daily.setRecipes(dailyConsumptionDTO.getRecipeList());
-
         return daily;
     }
 

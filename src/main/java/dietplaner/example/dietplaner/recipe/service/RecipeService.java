@@ -26,7 +26,7 @@ public class RecipeService {
         if(recipeRepository.findRecipeByName(recipeName).isPresent()) throw new RecipeAlreadyExistException();
     }
 
-    private void validateIfRecipeExistById(Long recipeId){
+    public void validateIfRecipeExistById(Long recipeId){
         recipeRepository.findRecipeByRecipeId(recipeId).stream().findFirst().orElseThrow(RecipeNotExistException::new);
     }
 

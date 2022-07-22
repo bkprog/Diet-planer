@@ -1,14 +1,15 @@
 package dietplaner.example.dietplaner.dailyconsumption.controller;
+
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.dailyconsumption.models.FindDailyConsumptionByUserAndDateDTO;
+import dietplaner.example.dietplaner.dailyconsumption.models.UpdateDailyConsumptionDTO;
 import dietplaner.example.dietplaner.dailyconsumption.repository.DailyConsumptionRepository;
 import dietplaner.example.dietplaner.dailyconsumption.service.DailyConsumptionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -44,9 +45,9 @@ public class DailyConsumptionController {
     @PostMapping("/findAllByUser")
     public List<DailyConsumption> findAllDailyConsumptionsByUser(@RequestBody Long id){return dailyConsumptionService.findAllDailyConsumptionsByUserId(id);}
 
-    @PutMapping("/update")
-    public DailyConsumption updateDailyConsuption(@RequestBody DailyConsumptionDTO dailyConsumptionDTO){
-        return dailyConsumptionService.updateDailyConsumption(dailyConsumptionDTO);
+    @PatchMapping("/addRecipeToDaily")
+    public DailyConsumption addRecipeToDaily(@RequestBody UpdateDailyConsumptionDTO updateDailyConsumptionDTO){
+        return dailyConsumptionService.addRecipeTODailyConsumption(updateDailyConsumptionDTO);
     }
 
 }
