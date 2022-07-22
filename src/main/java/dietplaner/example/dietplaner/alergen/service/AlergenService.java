@@ -27,7 +27,10 @@ public class AlergenService {
     private final ProductRepository productRepository;
 
     private void validateAlergenWithAlergenName(String alergenName) {
-        alergenRepository.getAlergenByName(alergenName).stream().findFirst().orElseThrow(AlergenAlreadyExistException::new);
+        if(alergenRepository.getAlergenByName(alergenName).isPresent()){
+            throw new AlergenAlreadyExistException();
+        }
+
     }
 
 

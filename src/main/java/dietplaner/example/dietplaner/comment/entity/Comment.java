@@ -1,6 +1,7 @@
 package dietplaner.example.dietplaner.comment.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import lombok.*;
@@ -23,12 +24,12 @@ public class Comment {
     @Column
     private String text;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "CommentToRecipe")
+    @ManyToOne
     private Recipe recipe;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "CommentToUser")
+    @ManyToOne
     private DefaultUser user;
 
 

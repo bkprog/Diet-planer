@@ -1,7 +1,9 @@
 package dietplaner.example.dietplaner.dailyconsumption.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import dietplaner.example.dietplaner.dailyconsumption.models.DailyConsumptionDTO;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
@@ -19,6 +21,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "dailyConsumptionId"
+)
 public class DailyConsumption {
 
 
@@ -32,6 +38,7 @@ public class DailyConsumption {
     @DateTimeFormat(pattern = "yyy-MM-dd")
     private LocalDate date;
 
+    @JsonManagedReference(value = "dailyToRecipe")
     @ManyToMany
     @JoinTable(
             name="dailyConsumptionToRecipe",
@@ -40,8 +47,8 @@ public class DailyConsumption {
     )
     private List<Recipe> recipes;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonManagedReference(value = "DailyToUser")
+    @ManyToOne
     @JoinColumn(name = "user_id")
     DefaultUser defaultUser;
 

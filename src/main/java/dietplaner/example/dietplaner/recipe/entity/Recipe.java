@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dietplaner.example.dietplaner.comment.entity.Comment;
 import dietplaner.example.dietplaner.dailyconsumption.entity.DailyConsumption;
@@ -28,14 +29,17 @@ public class Recipe {
     @Column
     private String description;
 
+
+    @JsonBackReference(value = "RecipeToDaily")
     @ManyToMany
     private List<DailyConsumption> dailyConsumptions;
 
+    @JsonManagedReference(value = "RecipeToProduct")
     @ManyToMany
     private List<Product> products;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "RecipeToComment")
     @OneToMany(
             mappedBy = "recipe"
     )

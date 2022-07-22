@@ -26,11 +26,11 @@ public class Alergen {
     @Column
     private String name;
 
-    @JsonBackReference
+    @JsonBackReference(value = "AlergenToUser")
     @ManyToMany(mappedBy = "alergens")
     private List<DefaultUser> users;
 
-    @JsonBackReference
+   @JsonBackReference(value = "AlergenToProduct")
     @ManyToMany(mappedBy = "alergens")
     private List<Product> products;
 

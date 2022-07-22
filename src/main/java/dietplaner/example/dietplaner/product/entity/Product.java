@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.product.models.ProductDTO;
@@ -36,6 +37,7 @@ public class Product {
     @Column
     private Long protein;
 
+    @JsonBackReference(value = "ProductToRecipe")
     @ManyToMany
     @JoinTable(
             name="ProductToRecipe",
@@ -44,7 +46,7 @@ public class Product {
     )
     private List<Recipe> recipes;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "ProductToAlergen")
     @ManyToMany
     @JoinTable(
             name="alergensToProduct",

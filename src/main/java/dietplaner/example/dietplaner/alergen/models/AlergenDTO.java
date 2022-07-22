@@ -10,4 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AlergenDTO {
     private String name;
+    private String chuj;
 }

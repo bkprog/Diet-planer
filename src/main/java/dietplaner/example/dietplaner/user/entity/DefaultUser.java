@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dietplaner.example.dietplaner.alergen.entity.Alergen;
 import dietplaner.example.dietplaner.comment.entity.Comment;
@@ -37,18 +38,18 @@ public class DefaultUser {
     @Column
     private String password;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "defaultUser")
+    @JsonBackReference(value = "userToDaily")
+    @OneToMany(mappedBy = "defaultUser")
     List<DailyConsumption> dailyConsumptions;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "userToComment")
     @OneToMany(
             mappedBy = "user"
     )
     private List<Comment> comments;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "UserToAlergen")
     @ManyToMany
     @JoinTable(
             name="alergensToUser",
