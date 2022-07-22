@@ -1,5 +1,6 @@
 package dietplaner.example.dietplaner.recipe.exceptions.Advice;
 
+import dietplaner.example.dietplaner.recipe.exceptions.ProductListIsEmptyException;
 import dietplaner.example.dietplaner.recipe.exceptions.RecipeAlreadyExistException;
 import dietplaner.example.dietplaner.recipe.exceptions.RecipeNotExistException;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,8 @@ public class RecipeAdviceController {
 
     @ResponseBody
     @ExceptionHandler(value = {
-            RecipeNotExistException.class
+            RecipeNotExistException.class,
+            ProductListIsEmptyException.class
     })
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFoundAdvice(RuntimeException ex){

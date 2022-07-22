@@ -50,7 +50,6 @@ public class Recipe {
         Recipe recipe= new Recipe();
         recipe.setDescription(recipeDTO.getDescription());
         recipe.setName(recipeDTO.getName());
-        recipe.setProducts(recipeDTO.getProducts());
         return recipe;
     }
 

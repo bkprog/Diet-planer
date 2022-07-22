@@ -19,6 +19,6 @@ public class DailyConsumptionDTO {
     private List<Recipe> recipeList;
     private Long userId;
 
-    //https://stackoverflow.com/questions/28802544/java-8-localdate-jackson-format
+
 
 }

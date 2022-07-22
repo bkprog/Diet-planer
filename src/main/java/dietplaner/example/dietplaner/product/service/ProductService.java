@@ -19,7 +19,7 @@ public class ProductService {
                 throw new ProductAlreadyExistException();
     }}
 
-    private void validateIfProductExistById(Long productId){
+    public void validateIfProductExistById(Long productId){
         productRepository.findById(productId).stream().findFirst().orElseThrow(ProductNotExistException::new);
     }
 
@@ -33,6 +33,10 @@ public class ProductService {
     public void deleteProduct(Long productId){
         validateIfProductExistById(productId);
         productRepository.deleteById(productId);
+    }
+
+    public Product findProductbyId(Long productID){
+        return productRepository.findById(productID).stream().findFirst().orElseThrow(ProductNotExistException::new);
     }
 
 
