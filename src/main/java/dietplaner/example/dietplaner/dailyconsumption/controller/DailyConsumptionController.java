@@ -50,4 +50,9 @@ public class DailyConsumptionController {
         return dailyConsumptionService.addRecipeTODailyConsumption(updateDailyConsumptionDTO);
     }
 
+    @PatchMapping("/removeRecipeFromDaily")
+    public DailyConsumption removeRecipeFromDaily(@RequestBody UpdateDailyConsumptionDTO updateDailyConsumptionDTO){
+        return  dailyConsumptionService.removeRecipeFromDailyConsumption(updateDailyConsumptionDTO);
+    }
+
 }

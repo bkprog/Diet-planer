@@ -26,8 +26,9 @@ public class YearlyConsumptionService extends ListOfConsumptionService {
 
 
     private SumMacroFromProductListDTO sumMacroFromProductList(List<Product> products){
+        Product startProduct= new Product(0L,0L,0L,0L);
 
-        Product total=products.stream().reduce(new Product(),(subtotal,element)->{
+        Product total=products.stream().reduce(startProduct,(subtotal,element)->{
            subtotal.setCarbs(subtotal.getCarbs()+element.getCarbs());
            subtotal.setKcal(subtotal.getKcal()+element.getKcal());
            subtotal.setFat(subtotal.getFat()+element.getFat());
@@ -39,23 +40,26 @@ public class YearlyConsumptionService extends ListOfConsumptionService {
     }
 
     private List<Product> reduceRecipeListToCombinedProductList(List<Recipe> recipes){
-        Recipe recipe=recipes.stream().reduce(new Recipe(),(subtotal,element)->{
-            List<Product> subProductList=subtotal.getProducts();
-            subProductList.addAll(element.getProducts());
-            subtotal.setProducts(subProductList);
-            return subtotal;
+        List<Product> products= new ArrayList<>();
+        recipes.forEach(recipe -> {
+            if(recipe.getProducts()!=null && !recipe.getProducts().isEmpty()){
+                products.addAll(recipe.getProducts());
+            }
         });
-        return recipe.getProducts();
+        return products;
     }
 
     private List<Recipe> reduceDailyConsumptionListToCombinedRecipeList(List<DailyConsumption>dailyConsumptions){
-        DailyConsumption dailyConsumption= dailyConsumptions.stream().reduce(new DailyConsumption(),(subtotal,element)->{
-            List<Recipe> subRecipeList=subtotal.getRecipes();
-            subRecipeList.addAll(element.getRecipes());
-            subtotal.setRecipes(subRecipeList);
-            return subtotal;
+
+
+        List<Recipe> recipes= new ArrayList<>();
+        dailyConsumptions.forEach(dailyConsumption -> {
+
+            if(dailyConsumption.getRecipes()!=null && !dailyConsumption.getRecipes().isEmpty()){
+                recipes.addAll(dailyConsumption.getRecipes());
+            }
         });
-        return dailyConsumption.getRecipes();
+        return recipes;
     }
 
 
@@ -69,14 +73,22 @@ public class YearlyConsumptionService extends ListOfConsumptionService {
         DefaultUser user= userService.findUserById(userId);
         List<DailyConsumption> dailyConsumptionsFromOneMonth= dailyConsumptionRepository.findDailyConsumptionsByDateBetweenAndDefaultUser(firstDayOfMonth,lastDayOfMonth,user);
 
+        if(dailyConsumptionsFromOneMonth!=null){
+            List<Recipe> recipes=reduceDailyConsumptionListToCombinedRecipeList(dailyConsumptionsFromOneMonth);
+                List<Product> products= reduceRecipeListToCombinedProductList(recipes);
+                SumMacroFromProductListDTO sumMacroFromProductListDTO = sumMacroFromProductList(products);
+                MonthlyConsumptionDTO monthlyConsumptionDTO= MonthlyConsumptionDTO.of(sumMacroFromProductListDTO);
+                monthlyConsumptionDTO.setMonth(yearMonth.getMonth());
+                return monthlyConsumptionDTO;
+        }
+        else{
+            MonthlyConsumptionDTO monthlyConsumptionDTO= new MonthlyConsumptionDTO();
+            monthlyConsumptionDTO.setMonth(yearMonth.getMonth());
+            return monthlyConsumptionDTO;
+        }
 
-        List<Recipe> recipes=reduceDailyConsumptionListToCombinedRecipeList(dailyConsumptionsFromOneMonth);
-        List<Product> products= reduceRecipeListToCombinedProductList(recipes);
-        SumMacroFromProductListDTO sumMacroFromProductListDTO = sumMacroFromProductList(products);
 
-        MonthlyConsumptionDTO monthlyConsumptionDTO= MonthlyConsumptionDTO.of(sumMacroFromProductListDTO);
-        monthlyConsumptionDTO.setMonth(yearMonth.getMonth());
-        return MonthlyConsumptionDTO.of(sumMacroFromProductListDTO);
+
     }
 
     public List<MonthlyConsumptionDTO> getYearlyConsumption(Year year,Long userId){
@@ -85,7 +97,8 @@ public class YearlyConsumptionService extends ListOfConsumptionService {
 
         for(int month=1; month<=12;month++){
              YearMonth yearMonth= year.atMonth(month);
-             monthlyConsumptionDTOS.add(sumDailyConsumptionFromOneMonth(yearMonth,userId));
+             MonthlyConsumptionDTO monthlyConsumptionDTO= sumDailyConsumptionFromOneMonth(yearMonth,userId);
+             monthlyConsumptionDTOS.add(monthlyConsumptionDTO);
         }
         return monthlyConsumptionDTOS;
     }

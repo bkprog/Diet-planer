@@ -55,6 +55,13 @@ public class Product {
     )
     private List<Alergen> alergens;
 
+    public Product(Long kcal, Long carbs, Long fat, Long protein) {
+        this.kcal = kcal;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+    }
+
 
     public static Product of(ProductDTO productDTO){
         Product product= new Product();
@@ -65,5 +72,7 @@ public class Product {
         product.setFat(productDTO.getFat());
         return product;
     }
+
+
 
 }

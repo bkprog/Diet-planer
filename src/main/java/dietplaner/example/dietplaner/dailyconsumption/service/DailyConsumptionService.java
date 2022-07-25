@@ -68,6 +68,15 @@ public class DailyConsumptionService {
             return dailyConsumptionRepository.save(daily);
         }
 
+        public DailyConsumption removeRecipeFromDailyConsumption(UpdateDailyConsumptionDTO updateDailyConsumptionDTO){
+            Recipe recipe=recipeService.getRecipeById(updateDailyConsumptionDTO.getRecipeId());
+            DailyConsumption daily= findDailyConsumptionByUserAndDate(updateDailyConsumptionDTO.getUserId(),updateDailyConsumptionDTO.getDate());
+            List<Recipe> recipesFromDaily=daily.getRecipes();
+            recipesFromDaily.remove(recipe);
+            daily.setRecipes(recipesFromDaily);
+            return dailyConsumptionRepository.save(daily);
+        }
+
         public DailyConsumption findDailyConsumptionByUserAndDate(Long userId, LocalDate date){
 
             return dailyConsumptionRepository.findDailyConsumptionByDefaultUserUserIdAndDate(userId,date).stream().findFirst()
