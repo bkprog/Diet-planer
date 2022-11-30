@@ -62,6 +62,22 @@ public class Product {
         this.protein = protein;
     }
 
+    public Product(String productName,Long kcal, Long carbs, Long fat, Long protein) {
+        this.productName=productName;
+        this.kcal = kcal;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+    }
+
+    public Product(String productName,Long kcal, Long carbs, Long fat, Long protein, List<Alergen> alergens){
+        this.productName=productName;
+        this.kcal = kcal;
+        this.carbs = carbs;
+        this.fat = fat;
+        this.protein = protein;
+        this.alergens=alergens;
+    }
 
     public static Product of(ProductDTO productDTO){
         Product product= new Product();

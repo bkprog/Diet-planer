@@ -1,8 +1,8 @@
-package dietplaner.example.dietplaner.user.Exceptions.advices;
+package dietplaner.example.dietplaner.user.exceptions.advices;
 
-import dietplaner.example.dietplaner.user.Exceptions.UserLoginAlreadyExistException;
-import dietplaner.example.dietplaner.user.Exceptions.UserNotExistException;
-import dietplaner.example.dietplaner.user.Exceptions.UserWrongAuthorizationDataException;
+import dietplaner.example.dietplaner.user.exceptions.UserLoginAlreadyExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserNotExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserWrongAuthorizationDataException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

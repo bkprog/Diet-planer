@@ -53,14 +53,14 @@ public class RecipeService {
     }
 
 
-    public void addRecipe(RecipeDTO recipeDTO){
+    public Recipe addRecipe(RecipeDTO recipeDTO){
         validateWithRecipeName(recipeDTO.getName());
         Recipe recipe=Recipe.of((recipeDTO));
         List<Long> recipeIds= recipeDTO.getProducts();
         List<Product> productList;
         productList= getRecipeListFromRecipeIdList(recipeIds);
         recipe.setProducts(productList);
-        recipeRepository.save(recipe);
+        return recipeRepository.save(recipe);
     }
 
     @Transactional

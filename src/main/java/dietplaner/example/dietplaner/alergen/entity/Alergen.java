@@ -39,4 +39,8 @@ public class Alergen {
         alergen.setName(alergenDTO.getName());
         return alergen;
     }
+
+    public Alergen(String name){
+        this.name=name;
+    }
 }

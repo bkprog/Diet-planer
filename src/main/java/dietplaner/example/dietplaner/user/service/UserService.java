@@ -1,6 +1,6 @@
 package dietplaner.example.dietplaner.user.service;
 
-import dietplaner.example.dietplaner.user.Exceptions.UserNotExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserNotExistException;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import dietplaner.example.dietplaner.user.repository.UserRepository;
 import lombok.AllArgsConstructor;

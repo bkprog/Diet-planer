@@ -8,6 +8,7 @@ import dietplaner.example.dietplaner.user.models.UserRegisterDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -68,5 +69,21 @@ public class DefaultUser {
         return user;
     }
 
+    public DefaultUser(String login,String password,String name, String surname,String email){
+        this.login=login;
+        this.password=password;
+        this.name=name;
+        this.surname=surname;
+        this.email=email;
+    }
+
+    public DefaultUser(String login,String password,String name, String surname,String email,List<Alergen> alergens){
+        this.login=login;
+        this.password=password;
+        this.name=name;
+        this.surname=surname;
+        this.email=email;
+        this.alergens=alergens;
+    }
 
 }

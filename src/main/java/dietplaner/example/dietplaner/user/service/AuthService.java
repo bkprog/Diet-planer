@@ -1,7 +1,7 @@
 package dietplaner.example.dietplaner.user.service;
 
-import dietplaner.example.dietplaner.user.Exceptions.UserLoginAlreadyExistException;
-import dietplaner.example.dietplaner.user.Exceptions.UserWrongAuthorizationDataException;
+import dietplaner.example.dietplaner.user.exceptions.UserLoginAlreadyExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserWrongAuthorizationDataException;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import dietplaner.example.dietplaner.user.models.PasswordChangeDTO;
 import dietplaner.example.dietplaner.user.models.UserLoginDTO;
@@ -24,11 +24,11 @@ public class AuthService {
     }
 
 
-    public void register(UserRegisterDTO userRegisterDTO){
+    public DefaultUser register(UserRegisterDTO userRegisterDTO){
 
         validateUserWithLogin(userRegisterDTO.getLogin());
 
-        userRepository.save(DefaultUser.of(UserRegisterDTO.builder()
+        return userRepository.save(DefaultUser.of(UserRegisterDTO.builder()
                 .name(userRegisterDTO.getName())
                 .surname(userRegisterDTO.getSurname())
                 .email(userRegisterDTO.getEmail())

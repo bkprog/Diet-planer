@@ -25,6 +25,7 @@ public class YearlyConsumptionService extends ListOfConsumptionService {
     private final DailyConsumptionRepository dailyConsumptionRepository;
 
 
+
     private SumMacroFromProductListDTO sumMacroFromProductList(List<Product> products){
         Product startProduct= new Product(0L,0L,0L,0L);
 

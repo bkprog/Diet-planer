@@ -1,4 +1,4 @@
-package dietplaner.example.dietplaner.user.Exceptions;
+package dietplaner.example.dietplaner.user.exceptions;
 
 public class UserNotExistException extends RuntimeException{
 

@@ -45,6 +45,17 @@ public class Recipe {
     )
     private List<Comment> comments;
 
+    public Recipe(String name,String description){
+        this.name=name;
+        this.description=description;
+    }
+
+    public Recipe(String name,String description, List<Product> products){
+        this.name=name;
+        this.description=description;
+        this.products= products;
+    }
+
 
     public static Recipe of(RecipeDTO recipeDTO){
         Recipe recipe= new Recipe();

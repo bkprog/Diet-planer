@@ -9,12 +9,13 @@ import dietplaner.example.dietplaner.alergen.repository.AlergenRepository;
 import dietplaner.example.dietplaner.product.entity.Product;
 import dietplaner.example.dietplaner.product.exceptions.ProductNotExistException;
 import dietplaner.example.dietplaner.product.repository.ProductRepository;
-import dietplaner.example.dietplaner.user.Exceptions.UserNotExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserNotExistException;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import dietplaner.example.dietplaner.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @AllArgsConstructor
@@ -47,7 +48,7 @@ public class AlergenService {
         DefaultUser user = userRepository.findDefaultUserByUserId(userId).stream().findFirst().orElseThrow(UserNotExistException::new);
         return user.getAlergens();
     }
-
+    @Transactional
     public DefaultUser setAlergenOfUser(UpdateAlergenListForUserDTO updateAlergenListForUserDTO) {
 
         DefaultUser user = userRepository.findDefaultUserByUserId(updateAlergenListForUserDTO.getUserId()).stream().findFirst().orElseThrow(UserNotExistException::new);
@@ -63,6 +64,7 @@ public class AlergenService {
         }
     }
 
+    @Transactional
     public DefaultUser removeAlergenFromUser(UpdateAlergenListForUserDTO updateAlergenListForUserDTO) {
 
         DefaultUser user = userRepository.findDefaultUserByUserId(updateAlergenListForUserDTO.getUserId()).stream().findFirst().orElseThrow(UserNotExistException::new);
@@ -78,6 +80,7 @@ public class AlergenService {
         }
     }
 
+    @Transactional
     public Product setAlergenToProduct(UpdateAlergenListForProductDTO updateAlergenListForProductDTO) {
         Product product = productRepository.findById(updateAlergenListForProductDTO.getProductId()).stream().findFirst().orElseThrow(ProductNotExistException::new);
         List<Alergen> alergensOfProduct = product.getAlergens();
@@ -93,6 +96,7 @@ public class AlergenService {
 
     }
 
+    @Transactional
     public Product removeAlergenFromProduct(UpdateAlergenListForProductDTO updateAlergenListForProductDTO) {
         Product product = productRepository.findById(updateAlergenListForProductDTO.getProductId()).stream().findFirst().orElseThrow(ProductNotExistException::new);
         List<Alergen> alergensOfProduct = product.getAlergens();

@@ -5,12 +5,13 @@ import dietplaner.example.dietplaner.product.entity.Product;
 import dietplaner.example.dietplaner.recipe.entity.Recipe;
 import dietplaner.example.dietplaner.recipe.models.RecipeFilterDTO;
 import dietplaner.example.dietplaner.recipe.repository.RecipeRepository;
-import dietplaner.example.dietplaner.user.Exceptions.UserNotExistException;
+import dietplaner.example.dietplaner.user.exceptions.UserNotExistException;
 import dietplaner.example.dietplaner.user.entity.DefaultUser;
 import dietplaner.example.dietplaner.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class RecipeFilterService {
    }
 
 
-
+    @Transactional
     public List<Recipe> filterRecipes(RecipeFilterDTO recipeFilterDTO){
 
        DefaultUser user= userRepository.findDefaultUserByUserId(recipeFilterDTO.getUserId()).stream().findFirst().orElseThrow(UserNotExistException::new);
